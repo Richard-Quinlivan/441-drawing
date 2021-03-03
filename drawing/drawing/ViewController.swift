@@ -9,15 +9,19 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    @IBOutlet var secondView : UIView!
+    @IBOutlet weak var drawShape : DrawShape!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-        secondView.backgroundColor = UIColor.blue
+        let displayLink = CADisplayLink(target: self, selector: #selector(update))
+        displayLink.add(to: RunLoop.main, forMode: RunLoop.Mode.default)
     }
 
-
+    @objc func update(){
+        print("update")
+        drawShape.update()
+    }
 }
 
